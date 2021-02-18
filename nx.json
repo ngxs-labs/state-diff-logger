@@ -15,6 +15,10 @@
       "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
-  "projects": { "state-diff-logger": { "tags": [] } },
+  "projects": {
+    "state-diff-logger": { "tags": [] },
+    "integration": { "tags": [] },
+    "integration-e2e": { "tags": [], "implicitDependencies": ["integration"] }
+  },
   "workspaceLayout": { "appsDir": "integrations", "libsDir": "packages" }
 }

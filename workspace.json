@@ -39,6 +39,126 @@
           }
         }
       }
+    },
+    "integration": {
+      "projectType": "application",
+      "root": "integrations/integration",
+      "sourceRoot": "integrations/integration/src",
+      "prefix": "state-diff-logger",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/integrations/integration",
+            "index": "integrations/integration/src/index.html",
+            "main": "integrations/integration/src/main.ts",
+            "polyfills": "integrations/integration/src/polyfills.ts",
+            "tsConfig": "integrations/integration/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "integrations/integration/src/favicon.ico",
+              "integrations/integration/src/assets"
+            ],
+            "styles": [
+              "integrations/integration/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "integrations/integration/src/environments/environment.ts",
+                  "with": "integrations/integration/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "integration:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "integration:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "integration:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "integrations/integration/src/**/*.ts",
+              "integrations/integration/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/integrations/integration"
+          ],
+          "options": {
+            "jestConfig": "integrations/integration/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "integration-e2e": {
+      "root": "integrations/integration-e2e",
+      "sourceRoot": "integrations/integration-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "integrations/integration-e2e/cypress.json",
+            "tsConfig": "integrations/integration-e2e/tsconfig.e2e.json",
+            "devServerTarget": "integration:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "integration:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "integrations/integration-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -48,7 +168,8 @@
     "@nrwl/angular:application": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
       "style": "scss",
