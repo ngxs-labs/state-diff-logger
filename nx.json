@@ -29,7 +29,7 @@
   },
   "projects": {},
   "workspaceLayout": {
-    "appsDir": "packages",
+    "appsDir": "integrations",
     "libsDir": "packages"
   }
 }
