@@ -1,0 +1,18 @@
+{
+  "packageFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    }
+  ],
+  "bumpFiles": [
+    {
+      "filename": ".version.json",
+      "type": "json"
+    },
+    {
+      "filename": "package.json",
+      "type": "json"
+    }
+  ]
+}
