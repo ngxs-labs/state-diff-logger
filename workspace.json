@@ -180,5 +180,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "state-diff-logger"
+  "defaultProject": "integration"
 }
