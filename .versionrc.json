@@ -1,17 +1,7 @@
 {
   "packageFiles": [
     {
-      "filename": "package.json",
-      "type": "json"
-    }
-  ],
-  "bumpFiles": [
-    {
-      "filename": ".version.json",
-      "type": "json"
-    },
-    {
-      "filename": "package.json",
+      "filename": "packages/state-diff-logger/package.json",
       "type": "json"
     }
   ]
