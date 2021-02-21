@@ -1485,6 +1485,13 @@
     enhanced-resolve "5.3.1"
     webpack-sources "2.0.1"
 
+"@ngxs/logger-plugin@^3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.7.1.tgz#045b1b7efbef82d47488f925be8af77cf66ee906"
+  integrity sha512-+iUwPnKFa0SPvT5duzPKaRZvql49lWPh5/kxE7U6BLnEZd87MrVUmVRDWalyvyiw7/ZiYeEk1aM8OgkmMKgwnQ==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngxs/store@^3.7.1":
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.1.tgz#3333379eb36cfe475d019b6c894b263ea515b8a5"
