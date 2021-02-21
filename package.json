@@ -1,11 +1,12 @@
 {
   "name": "state-diff-logger",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
     "build": "nx build",
+    "build:lib": "nx build state-diff-logger",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
@@ -24,7 +25,8 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "release": "standard-version"
   },
   "private": true,
   "dependencies": {
@@ -71,6 +73,7 @@
     "jsondiffpatch": "^0.4.1",
     "ng-packagr": "^11.0.0",
     "prettier": "2.2.1",
+    "standard-version": "^9.1.1",
     "ts-jest": "26.4.0",
     "ts-node": "~9.1.1",
     "typescript": "~4.0.3"
