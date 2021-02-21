@@ -7,7 +7,7 @@ import { NgxsModule, NGXS_PLUGINS } from '@ngxs/store';
 import { TestState } from './test.state';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { environment } from '../environments/environment';
-import { NgxsStateDiffLoggerPlugin } from '@ngxs-labs/state-diff-logger';
+import { NgxsStateDiffLoggerPluginProvider } from '@ngxs-labs/state-diff-logger';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,13 +19,7 @@ import { NgxsStateDiffLoggerPlugin } from '@ngxs-labs/state-diff-logger';
     }),
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
   ],
-  providers: [
-    {
-      provide: NGXS_PLUGINS,
-      useClass: NgxsStateDiffLoggerPlugin,
-      multi: true,
-    },
-  ],
+  providers: [NgxsStateDiffLoggerPluginProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
