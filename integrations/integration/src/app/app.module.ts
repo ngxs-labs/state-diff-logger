@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { NgxsModule, NGXS_PLUGINS } from '@ngxs/store';
+import { NgxsModule } from '@ngxs/store';
 import { TestState } from './test.state';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { environment } from '../environments/environment';
-import { NgxsStateDiffLoggerPluginProvider } from '@ngxs-labs/state-diff-logger';
+import { NgxsStateDiffLoggerModule } from '@ngxs-labs/state-diff-logger';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +17,10 @@ import { NgxsStateDiffLoggerPluginProvider } from '@ngxs-labs/state-diff-logger'
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production,
     }),
+    NgxsStateDiffLoggerModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
   ],
-  providers: [NgxsStateDiffLoggerPluginProvider],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

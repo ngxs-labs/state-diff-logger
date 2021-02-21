@@ -1,1 +1,1 @@
-export * from './lib/ngxs-state-diff-logger.provider';
+export * from './lib/ngxs-state-diff-logger.module';
