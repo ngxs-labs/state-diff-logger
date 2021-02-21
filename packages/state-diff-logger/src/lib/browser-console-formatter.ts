@@ -1,10 +1,10 @@
-import BaseFormatter from "./base-formatter";
+import BaseFormatter from './base-formatter';
 
 function consoleColor(style) {
-  return function(text) {
+  return function (text) {
     return {
       text: `%c${text}`,
-      style
+      style,
     };
   };
   // return (
@@ -17,29 +17,29 @@ function consoleColor(style) {
 
 let colors = {
   added: consoleColor(
-    "background: green; color: #fff; padding: 4px; border-radius: 2px"
+    'background: green; color: #fff; padding: 4px; border-radius: 2px'
   ),
   deleted: consoleColor(
-    "text-decoration: line-trough ;background: red; color: #fff; padding: 4px; border-radius: 2px"
+    'text-decoration: line-trough ;background: red; color: #fff; padding: 4px; border-radius: 2px'
   ),
   movedestination: consoleColor(
-    "background: gray; color: #fff; padding: 4px; border-radius: 2px"
+    'background: gray; color: #fff; padding: 4px; border-radius: 2px'
   ),
   moved: consoleColor(
-    "background: yellow; color: #fff; padding: 4px; border-radius: 2px"
+    'background: yellow; color: #fff; padding: 4px; border-radius: 2px'
   ),
   unchanged: consoleColor(
-    "background: gray; color: #fff; padding: 4px; border-radius: 2px"
+    'background: gray; color: #fff; padding: 4px; border-radius: 2px'
   ),
   error: consoleColor(
-    "background: red; color: #fff; padding: 4px; border-radius: 2px"
+    'background: red; color: #fff; padding: 4px; border-radius: 2px'
   ),
   textDiffLine: consoleColor(
-    "background: gray; color: #fff; padding: 4px; border-radius: 2px"
+    'background: gray; color: #fff; padding: 4px; border-radius: 2px'
   ),
   unset: consoleColor(
-    "background: unset; color: unset padding: 4px; border-radius: unset"
-  )
+    'background: unset; color: unset padding: 4px; border-radius: unset'
+  ),
 };
 
 class BrowserConsoleFormatter extends BaseFormatter {
@@ -51,22 +51,22 @@ class BrowserConsoleFormatter extends BaseFormatter {
   prepareContext(context) {
     super.prepareContext(context);
     context.styles = [];
-    context.indent = function(levels) {
+    context.indent = function (levels) {
       this.indentLevel =
-        (this.indentLevel || 0) + (typeof levels === "undefined" ? 1 : levels);
-      this.indentPad = new Array(this.indentLevel + 1).join("  ");
+        (this.indentLevel || 0) + (typeof levels === 'undefined' ? 1 : levels);
+      this.indentPad = new Array(this.indentLevel + 1).join('  ');
       this.outLine();
     };
-    context.outLine = function() {
-      this.buffer.push(`%c\n${this.indentPad || ""}`);
+    context.outLine = function () {
+      this.buffer.push(`%c\n${this.indentPad || ''}`);
       this.styles.push(
-        "background: unset; color: unset padding: 4px; border-radius: unset"
+        'background: unset; color: unset padding: 4px; border-radius: unset'
       );
     };
-    context.out = function(...args) {
+    context.out = function (...args) {
       for (let i = 0, l = args.length; i < l; i++) {
-        let lines = args[i].split("\n");
-        let text = lines.join(`\n${this.indentPad || ""}`);
+        let lines = args[i].split('\n');
+        let text = lines.join(`\n${this.indentPad || ''}`);
         if (this.color && this.color[0]) {
           const result = this.color[0](text);
           text = result.text;
@@ -76,11 +76,11 @@ class BrowserConsoleFormatter extends BaseFormatter {
         this.buffer.push(text);
       }
     };
-    context.pushColor = function(color) {
+    context.pushColor = function (color) {
       this.color = this.color || [];
       this.color.unshift(color);
     };
-    context.popColor = function() {
+    context.popColor = function () {
       this.color = [];
       this.color.unshift(colors.unset);
     };
@@ -124,16 +124,16 @@ class BrowserConsoleFormatter extends BaseFormatter {
 
   rootBegin(context, type, nodeType) {
     context.pushColor(colors[type]);
-    if (type === "node") {
-      context.out(nodeType === "array" ? "[" : "{");
+    if (type === 'node') {
+      context.out(nodeType === 'array' ? '[' : '{');
       context.indent();
     }
   }
 
   rootEnd(context, type, nodeType) {
-    if (type === "node") {
+    if (type === 'node') {
       context.indent(-1);
-      context.out(nodeType === "array" ? "]" : "}");
+      context.out(nodeType === 'array' ? ']' : '}');
     }
     context.popColor();
   }
@@ -141,16 +141,16 @@ class BrowserConsoleFormatter extends BaseFormatter {
   nodeBegin(context, key, leftKey, type, nodeType) {
     context.pushColor(colors[type]);
     context.out(`${leftKey}: `);
-    if (type === "node") {
-      context.out(nodeType === "array" ? "[" : "{");
+    if (type === 'node') {
+      context.out(nodeType === 'array' ? '[' : '{');
       context.indent();
     }
   }
 
   nodeEnd(context, key, leftKey, type, nodeType, isLast) {
-    if (type === "node") {
+    if (type === 'node') {
       context.indent(-1);
-      context.out(nodeType === "array" ? "]" : `}${isLast ? "" : ","}`);
+      context.out(nodeType === 'array' ? ']' : `}${isLast ? '' : ','}`);
     }
     if (!isLast) {
       context.outLine();
@@ -162,14 +162,14 @@ class BrowserConsoleFormatter extends BaseFormatter {
   /* eslint-disable camelcase */
 
   format_unchanged(context, delta, left) {
-    if (typeof left === "undefined") {
+    if (typeof left === 'undefined') {
       return;
     }
     this.formatValue(context, left);
   }
 
   format_movedestination(context, delta, left) {
-    if (typeof left === "undefined") {
+    if (typeof left === 'undefined') {
       return;
     }
     this.formatValue(context, left);
@@ -188,7 +188,7 @@ class BrowserConsoleFormatter extends BaseFormatter {
     context.pushColor(colors.deleted);
     this.formatValue(context, delta[0]);
     context.popColor();
-    context.out(" => ");
+    context.out(' => ');
     context.pushColor(colors.added);
     this.formatValue(context, delta[1]);
     context.popColor();
