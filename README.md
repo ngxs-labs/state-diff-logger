@@ -17,8 +17,10 @@ In order to install the plugin you need to add the following packages
 Next you need to include the plugin in you `app.module.ts`
 
 ```ts
+// ...
+import { NgxsStateDiffLoggerModule } from '@ngxs-labs/state-diff-logger';
+
 @NgModule({
-  declarations: [AppComponent],
   imports: [
     BrowserModule,
     NgxsModule.forRoot([TestState]),
@@ -26,10 +28,9 @@ Next you need to include the plugin in you `app.module.ts`
       disabled: environment.production,
     }),
     NgxsStateDiffLoggerModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    //...
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  //...
 })
 export class AppModule {}
 ```
